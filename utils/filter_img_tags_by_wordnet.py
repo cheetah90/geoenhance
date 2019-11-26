@@ -32,6 +32,8 @@ def main():
 	# import all the hyponyms
 	hyponyms = import_hyponyms(sys.argv[1])
 
+	counter = 0
+
 	# start filtering
 	with open("./img_tags_locations.tsv") as f:
 		for line in f:
@@ -40,7 +42,9 @@ def main():
 			for a_tag in tags:
 				if a_tag in hyponyms:
 					IOUtility.append_line_to_file(line, output_file_name)
+					counter += 1
 					break
+	print("{} images found with this wordnet synsets".format(counter))
 
 
 if __name__ == "__main__":
